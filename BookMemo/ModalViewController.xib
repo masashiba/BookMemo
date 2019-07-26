@@ -23,27 +23,44 @@
             <rect key="frame" x="0.0" y="0.0" width="220" height="140"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="本の題名を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCo-zn-yDz">
-                    <rect key="frame" x="13" y="20" width="195" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yd7-cI-axc">
-                    <rect key="frame" x="14" y="55" width="192" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yd7-cI-axc">
+                    <rect key="frame" x="11" y="55" width="198" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="Yd7-cI-axc" secondAttribute="height" multiplier="33:5" id="h0J-Ma-21b"/>
+                    </constraints>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o53-2D-mPe">
-                    <rect key="frame" x="95" y="98" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o53-2D-mPe">
+                    <rect key="frame" x="88" y="97" width="44" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="o53-2D-mPe" secondAttribute="height" multiplier="22:15" id="2AT-9O-gyT"/>
+                    </constraints>
                     <state key="normal" title="OK"/>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="本の題名を入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xCo-zn-yDz">
+                    <rect key="frame" x="11" y="26" width="198" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="xCo-zn-yDz" secondAttribute="height" multiplier="11:1" id="nbE-Lv-Kbc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="xCo-zn-yDz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="GSW-bT-alz"/>
+                <constraint firstItem="o53-2D-mPe" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.2" id="KBJ-vT-Ab0"/>
+                <constraint firstAttribute="centerY" secondItem="xCo-zn-yDz" secondAttribute="centerY" multiplier="2" id="KCM-0D-lNK"/>
+                <constraint firstItem="Yd7-cI-axc" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="QZR-DM-66p"/>
+                <constraint firstItem="o53-2D-mPe" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="1.6" id="mUZ-Vc-UT7"/>
+                <constraint firstItem="xCo-zn-yDz" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.9" id="nRM-lQ-ahD"/>
+                <constraint firstItem="Yd7-cI-axc" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.9" id="p8U-3Z-Kdn"/>
+                <constraint firstItem="Yd7-cI-axc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="umE-Ze-oER"/>
+                <constraint firstItem="o53-2D-mPe" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="x9R-Jb-F5r"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="316.875" y="430.98591549295776"/>

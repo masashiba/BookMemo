@@ -20,7 +20,7 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     var bookNameArray = [String]()
     
     //ModalViewのインスタンス作成
-    let modalView = ModalViewController(nibName: "ModalViewController", bundle: nil)
+    let modalView = ModalViewController(nibName: "ModalViewController", bundle: nil) as UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +49,7 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         overlayAppearance.liveBlurEnabled = false
         overlayAppearance.opacity         = 0.2
         //PopUp作成
-        let popup = PopupDialog(viewController: modalView, transitionStyle: .zoomIn)
+        let popup = PopupDialog(viewController: modalView, transitionStyle: .zoomIn, preferredWidth: 220) as UIViewController
         //PopUp表示
         present(popup, animated: true, completion: {() -> Void in
             print("hoge")
