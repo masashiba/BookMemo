@@ -16,19 +16,57 @@ class ModalViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        //buttonのメソッド
+        button.addTarget(self, action: #selector(pushOK), for: .touchUpInside)
+        //textFieldの入力時のメソッド
+        textField.addTarget(self, action: #selector(judgeButtonEnable), for: .editingChanged)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         //フォント設定
-        label.font = UIFont(name: "03SmartFontUI", size: 15)
+        label.font = UIFont(name: "03SmartFontUI", size: label.frame.size.height * 0.65)
         button.titleLabel?.font = UIFont(name: "03SmartFontUI", size: 17)
+        textField.font = UIFont(name: "03SmartFontUI", size: textField.frame.size.height * 0.4)
         //TextFieldの下線
         let buttomLine = CALayer()
         buttomLine.borderWidth = CGFloat(2.0)
-        buttomLine.borderColor = UIColor.green.cgColor
-        buttomLine.frame = CGRect(x: 0, y: textField.frame.size.height - 2.0, width: textField.frame.size.width, height: 1)
+        buttomLine.borderColor = (UIColor(red: 24/255, green: 95/255, blue: 48/255, alpha: 1)).cgColor
+        buttomLine.frame = CGRect(x: 0, y: textField.frame.size.height * 0.75, width: textField.frame.size.width, height: 1)
         textField.layer.addSublayer(buttomLine)
-        // Do any additional setup after loading the view.
+        //textField初期化
+        textField.text = ""
+        //button初期化
+        button.isEnabled = false
     }
 
+    //button押した時
+    @objc func pushOK() {
+        if textField.text == ""{
+            
+        } else {
+            //消える
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    //textFieldが空の時button押せない
+    @objc func judgeButtonEnable() {
+        if textField.text!.trimmingCharacters(in: .whitespaces) == "" {
+            button.isEnabled = false
+        } else {
+            button.isEnabled = true
+        }
+    }
+    
+    //textField以外のところを触ると編集終わり
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        textField.endEditing(true)
+    }
 
+    
+    
     /*
     // MARK: - Navigation
 
