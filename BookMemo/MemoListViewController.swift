@@ -10,12 +10,35 @@ import UIKit
 
 class MemoListViewController: UIViewController {
 
+    //Outlet変数
+    @IBOutlet var table : UITableView!
+    @IBOutlet var navBar : UINavigationBar!
+    @IBOutlet var navItem : UINavigationItem!
+    @IBOutlet var addCellButton : UIButton!
+    //navigationBarのtitle入れる変数
+    var titleString = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //UI設定
+        table.tableFooterView = UIView()
+        let backBarButton = UIBarButtonItem(title: "戻る", style: UIBarButtonItem.Style.plain, target: self, action:#selector(self.returnView))
+        backBarButton.tintColor = UIColor.white
+        navItem.leftBarButtonItem = backBarButton
+        navItem.title = titleString
+        navBar.titleTextAttributes =
+            [NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 18) as Any,
+             NSAttributedString.Key.foregroundColor: UIColor.white]
+        navBar.pushItem(navItem, animated: true)
+        addCellButton.layer.cornerRadius = 30
+        addCellButton.titleLabel?.font = UIFont(name: "03SmartFontUI", size: 40)
         // Do any additional setup after loading the view.
     }
     
+    @objc func returnView() {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

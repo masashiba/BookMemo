@@ -7,6 +7,7 @@ target 'BookMemo' do
 
   # Pods for BookMemo
   pod 'PopupDialog'
+  pod 'RealmSwift'
 
   target 'BookMemoTests' do
     inherit! :search_paths

@@ -14,6 +14,7 @@
 		BC89908622CF556E00B4B511 /* BookListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC89908422CF556E00B4B511 /* BookListTableViewCell.swift */; };
 		BC89908722CF556E00B4B511 /* BookListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC89908522CF556E00B4B511 /* BookListTableViewCell.xib */; };
 		BC89908922CF570100B4B511 /* 03SmartFontUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC89908822CF570100B4B511 /* 03SmartFontUI.ttf */; };
+		BCCAB43D22F0776200949BCF /* BookNameRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCAB43C22F0776200949BCF /* BookNameRealm.swift */; };
 		BCF913D622BCB4B2006723DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF913D522BCB4B2006723DF /* AppDelegate.swift */; };
 		BCF913DB22BCB4B2006723DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF913D922BCB4B2006723DF /* Main.storyboard */; };
 		BCF913DD22BCB4B4006723DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCF913DC22BCB4B4006723DF /* Assets.xcassets */; };
@@ -55,6 +56,7 @@
 		BC89908422CF556E00B4B511 /* BookListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListTableViewCell.swift; sourceTree = "<group>"; };
 		BC89908522CF556E00B4B511 /* BookListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookListTableViewCell.xib; sourceTree = "<group>"; };
 		BC89908822CF570100B4B511 /* 03SmartFontUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 03SmartFontUI.ttf; path = ../../../../../Library/Fonts/03SmartFontUI.ttf; sourceTree = "<group>"; };
+		BCCAB43C22F0776200949BCF /* BookNameRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNameRealm.swift; sourceTree = "<group>"; };
 		BCF913D222BCB4B2006723DF /* BookMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCF913D522BCB4B2006723DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCF913DA22BCB4B2006723DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				BC89908822CF570100B4B511 /* 03SmartFontUI.ttf */,
 				BC4AECBA22E1A01C00C54504 /* ModalViewController.swift */,
 				BC4AECBB22E1A01C00C54504 /* ModalViewController.xib */,
+				BCCAB43C22F0776200949BCF /* BookNameRealm.swift */,
 			);
 			path = BookMemo;
 			sourceTree = "<group>";
@@ -397,6 +400,8 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-BookMemo/Pods-BookMemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DynamicBlurView/DynamicBlurView.framework",
 				"${BUILT_PRODUCTS_DIR}/PopupDialog/PopupDialog.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -404,6 +409,8 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DynamicBlurView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PopupDialog.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -421,6 +428,7 @@
 				BCF9140822BCB4F2006723DF /* MemoViewController.swift in Sources */,
 				BCF913D622BCB4B2006723DF /* AppDelegate.swift in Sources */,
 				BCF9140422BCB4D9006723DF /* BookListViewController.swift in Sources */,
+				BCCAB43D22F0776200949BCF /* BookNameRealm.swift in Sources */,
 				BC4AECBC22E1A01C00C54504 /* ModalViewController.swift in Sources */,
 				BCF9140622BCB4E8006723DF /* MemoListViewController.swift in Sources */,
 			);

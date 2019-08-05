@@ -43,12 +43,13 @@ class ModalViewController: UIViewController {
 
     //button押した時
     @objc func pushOK() {
-        if textField.text == ""{
-            
-        } else {
-            //消える
-            self.dismiss(animated: true, completion: nil)
-        }
+        //消える
+        self.dismiss(animated: true, completion: nil)
+        //親viewに値を受け渡し
+        let bookListViewController = self.presentingViewController as! BookListViewController
+        bookListViewController.bookNameArray.append(self.textField.text!.trimmingCharacters(in: .whitespaces))
+        //親viewにcell追加させる
+        bookListViewController.table.reloadData()
     }
     
     //textFieldが空の時button押せない

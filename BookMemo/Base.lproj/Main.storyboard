@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.091022394600000001" green="0.37168669700000001" blue="0.19056189060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="hpc-XC-D4A">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="hpc-XC-D4A" customClass="BookListTableViewCell" customModule="BookMemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hpc-XC-D4A" id="m2F-wl-4RQ">
@@ -59,10 +59,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="addCellButton" destination="j33-BW-PWp" id="4Tm-3D-3Le"/>
-                        <outlet property="label" destination="gih-Fm-lKJ" id="3VM-mg-HSr"/>
-                        <outlet property="table" destination="NRl-rF-emN" id="hBv-mQ-uld"/>
-                        <segue destination="Rlk-4z-Kel" kind="show" id="bbF-Ng-liZ"/>
+                        <outlet property="addCellButton" destination="j33-BW-PWp" id="RNp-xf-7yX"/>
+                        <outlet property="label" destination="gih-Fm-lKJ" id="jeu-qy-Y0X"/>
+                        <outlet property="table" destination="NRl-rF-emN" id="4Ga-4U-4yd"/>
+                        <segue destination="Rlk-4z-Kel" kind="show" identifier="toMemoList" id="WsR-au-Kzp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -92,29 +92,40 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYP-iG-0Ff">
-                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" red="0.091022394600000001" green="0.37168669700000001" blue="0.19056189060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
-                                    <color key="textColor" red="0.96558529140000005" green="0.96574670080000002" blue="0.96556395289999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Title" id="tSW-6S-4R0"/>
-                                </items>
-                            </navigationBar>
                             <searchBar contentMode="redraw" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HuO-VZ-nhE">
                                 <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.091022394600000001" green="0.37168669700000001" blue="0.19056189060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v27-ry-D02">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.094117647060000004" green="0.37254901959999998" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Title" id="vEb-aa-73A"/>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PhM-Uv-8aB">
+                                <rect key="frame" x="236" y="489" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.85098039219999999" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="＋">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.091022394597530365" green="0.37168669700622559" blue="0.19056189060211182" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="cvM-ZW-UoP"/>
                     </view>
                     <connections>
+                        <outlet property="addCellButton" destination="PhM-Uv-8aB" id="Xfg-WW-zkm"/>
+                        <outlet property="navBar" destination="v27-ry-D02" id="CPF-LY-MRQ"/>
+                        <outlet property="navItem" destination="vEb-aa-73A" id="gPL-x6-hMi"/>
+                        <outlet property="table" destination="oP2-ZS-r9V" id="nwr-h7-4w4"/>
                         <segue destination="KR3-rl-Iw3" kind="show" id="auh-33-jmR"/>
                     </connections>
                 </viewController>

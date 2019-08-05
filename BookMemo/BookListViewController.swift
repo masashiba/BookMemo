@@ -18,7 +18,8 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     
     //本の名前の配列
     var bookNameArray = [String]()
-    
+    //受け渡すタイトルを入れる変数
+    var titleText = String()
     //ModalViewのインスタンス作成
     let modalView = ModalViewController(nibName: "ModalViewController", bundle: nil) as UIViewController
     
@@ -36,11 +37,11 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         //cell準備
         table.register(UINib(nibName: "BookListTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         //ButtonのAction追加
-        addCellButton.addTarget(self, action: #selector(self.addCell(_:)), for: UIControl.Event.touchUpInside)
+        addCellButton.addTarget(self, action: #selector(presentModal), for: UIControl.Event.touchUpInside)
     }
     
     //追加ボタンを押した時の挙動
-    @objc func addCell(_ sender: UIButton) {
+    @objc func presentModal() {
         //背景透過
         let overlayAppearance = PopupDialogOverlayView.appearance()
         overlayAppearance.color           = .white
@@ -52,20 +53,43 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         let popup = PopupDialog(viewController: modalView, transitionStyle: .zoomIn, preferredWidth: 220) as UIViewController
         //PopUp表示
         present(popup, animated: true, completion: {() -> Void in
-            print("hoge")
+            
         })
     }
 
     
     
+    //bookNameArrayの中身を順番にcellに格納
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return section
+        return bookNameArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return table.dequeueReusableCell(withIdentifier: "CustomCell") as! BookListTableViewCell
+        let customCell = table.dequeueReusableCell(withIdentifier: "CustomCell") as! BookListTableViewCell
+        customCell.bookNameLabel.text = bookNameArray[indexPath.row]
+        return customCell
     }
     
+    //cellが押されたら画面遷移
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        titleText = bookNameArray[indexPath.row]
+        performSegue(withIdentifier: "toMemoList", sender: nil)
+        table.deselectRow(at: indexPath, animated: true)
+    }
+    
+    //cell削除
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        bookNameArray.remove(at: indexPath.row)
+        table.deleteRows(at: [indexPath], with: .fade)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMemoList" {
+            let memoListViewController = segue.destination as! MemoListViewController
+            memoListViewController.titleString = titleText
+        }
+    }
     
     /*
     // MARK: - Navigation
