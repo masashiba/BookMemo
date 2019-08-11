@@ -47,9 +47,9 @@ class ModalViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
         //親viewに値を受け渡し
         let bookListViewController = self.presentingViewController as! BookListViewController
-        bookListViewController.bookNameArray.append(self.textField.text!.trimmingCharacters(in: .whitespaces))
+        bookListViewController.newBook = self.textField.text!.trimmingCharacters(in: .whitespaces)
         //親viewにcell追加させる
-        bookListViewController.table.reloadData()
+        bookListViewController.addBook()
     }
     
     //textFieldが空の時button押せない

@@ -9,6 +9,12 @@
 import UIKit
 import RealmSwift
 
-class BookNameRealm: Object {
-    dynamic var bookNameList = [String]();
+class Memo: Object {
+    @objc dynamic var title = ""
+    @objc dynamic var content = ""
+}
+
+class Book: Object {
+    @objc dynamic var bookName = ""
+    let memos = List<Memo>()
 }

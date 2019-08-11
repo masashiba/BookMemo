@@ -14,6 +14,7 @@
 		BC89908622CF556E00B4B511 /* BookListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC89908422CF556E00B4B511 /* BookListTableViewCell.swift */; };
 		BC89908722CF556E00B4B511 /* BookListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC89908522CF556E00B4B511 /* BookListTableViewCell.xib */; };
 		BC89908922CF570100B4B511 /* 03SmartFontUI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC89908822CF570100B4B511 /* 03SmartFontUI.ttf */; };
+		BCAF229E22FEC0CB0000D52D /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9140722BCB4F2006723DF /* MemoViewController.swift */; };
 		BCCAB43D22F0776200949BCF /* BookNameRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCAB43C22F0776200949BCF /* BookNameRealm.swift */; };
 		BCF913D622BCB4B2006723DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF913D522BCB4B2006723DF /* AppDelegate.swift */; };
 		BCF913DB22BCB4B2006723DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF913D922BCB4B2006723DF /* Main.storyboard */; };
@@ -23,7 +24,6 @@
 		BCF913F622BCB4B4006723DF /* BookMemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF913F522BCB4B4006723DF /* BookMemoUITests.swift */; };
 		BCF9140422BCB4D9006723DF /* BookListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9140322BCB4D9006723DF /* BookListViewController.swift */; };
 		BCF9140622BCB4E8006723DF /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9140522BCB4E8006723DF /* MemoListViewController.swift */; };
-		BCF9140822BCB4F2006723DF /* MemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCF9140722BCB4F2006723DF /* MemoViewController.swift */; };
 		F6D312EEA740819D4E731752 /* Pods_BookMemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 388B0F79AB5271739606083E /* Pods_BookMemoTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -424,8 +424,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCAF229E22FEC0CB0000D52D /* MemoViewController.swift in Sources */,
 				BC89908622CF556E00B4B511 /* BookListTableViewCell.swift in Sources */,
-				BCF9140822BCB4F2006723DF /* MemoViewController.swift in Sources */,
 				BCF913D622BCB4B2006723DF /* AppDelegate.swift in Sources */,
 				BCF9140422BCB4D9006723DF /* BookListViewController.swift in Sources */,
 				BCCAB43D22F0776200949BCF /* BookNameRealm.swift in Sources */,

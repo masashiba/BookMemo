@@ -8,6 +8,7 @@
 
 import UIKit
 import PopupDialog
+import RealmSwift
 
 class BookListViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
 
@@ -16,12 +17,14 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     @IBOutlet var table : UITableView!
     @IBOutlet var addCellButton : UIButton!
     
-    //本の名前の配列
-    var bookNameArray = [String]()
+    //追加する本の名前を一時的に入れる変数
+    var newBook = String()
     //受け渡すタイトルを入れる変数
     var titleText = String()
     //ModalViewのインスタンス作成
     let modalView = ModalViewController(nibName: "ModalViewController", bundle: nil) as UIViewController
+    //どの本かを示す変数
+    var bookNumber = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,25 +65,32 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     //bookNameArrayの中身を順番にcellに格納
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookNameArray.count
+        let realm = try! Realm()
+        let books = realm.objects(Book.self)
+        return books.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let realm = try! Realm()
+        let books = realm.objects(Book.self)
         let customCell = table.dequeueReusableCell(withIdentifier: "CustomCell") as! BookListTableViewCell
-        customCell.bookNameLabel.text = bookNameArray[indexPath.row]
+        customCell.bookNameLabel.text = books[indexPath.row].bookName
         return customCell
     }
     
     //cellが押されたら画面遷移
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        titleText = bookNameArray[indexPath.row]
+        let realm = try! Realm()
+        let books = realm.objects(Book.self)
+        titleText = books[indexPath.row].bookName
+        bookNumber = indexPath.row
         performSegue(withIdentifier: "toMemoList", sender: nil)
         table.deselectRow(at: indexPath, animated: true)
     }
     
     //cell削除
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        bookNameArray.remove(at: indexPath.row)
+        self.delete(index: indexPath.row)
         table.deleteRows(at: [indexPath], with: .fade)
     }
     
@@ -88,6 +98,33 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         if segue.identifier == "toMemoList" {
             let memoListViewController = segue.destination as! MemoListViewController
             memoListViewController.titleString = titleText
+            memoListViewController.bookNumber = self.bookNumber
+        }
+    }
+    
+    func addBook() {
+        let book = Book()
+        book.bookName = newBook
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(book)
+            }
+        } catch {
+            
+        }
+        table.reloadData()
+    }
+    
+    func delete(index: Int) {
+        do {
+            let realm = try! Realm()
+            let books = realm.objects(Book.self)
+            try realm.write {
+                realm.delete(books[index])
+            }
+        } catch {
+            
         }
     }
     

@@ -82,11 +82,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.091022394600000001" green="0.37168669700000001" blue="0.19056189060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="65" id="8li-Ji-nj0">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="65"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="8li-Ji-nj0">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8li-Ji-nj0" id="Xg6-xa-Ugy">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -116,17 +116,20 @@
                                 <state key="normal" title="＋">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="KR3-rl-Iw3" kind="show" id="EQy-wQ-Ner"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.091022394597530365" green="0.37168669700622559" blue="0.19056189060211182" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="cvM-ZW-UoP"/>
                     </view>
                     <connections>
-                        <outlet property="addCellButton" destination="PhM-Uv-8aB" id="Xfg-WW-zkm"/>
+                        <outlet property="addMemoButton" destination="PhM-Uv-8aB" id="4Ai-f1-w1v"/>
                         <outlet property="navBar" destination="v27-ry-D02" id="CPF-LY-MRQ"/>
                         <outlet property="navItem" destination="vEb-aa-73A" id="gPL-x6-hMi"/>
                         <outlet property="table" destination="oP2-ZS-r9V" id="nwr-h7-4w4"/>
-                        <segue destination="KR3-rl-Iw3" kind="show" id="auh-33-jmR"/>
+                        <segue destination="KR3-rl-Iw3" kind="show" identifier="toMemoDetail" id="2kN-pl-mJn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ap9-Qx-KYG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -153,14 +156,38 @@
                                     <navigationItem title="Title" id="REU-Bs-p3C"/>
                                 </items>
                             </navigationBar>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1vb-Qo-b12">
+                                <rect key="frame" x="32" y="94" width="256" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mee-fr-fuX">
+                                <rect key="frame" x="16" y="146" width="288" height="422"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.094117647060000004" green="0.37254901959999998" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.091022394600000001" green="0.37168669700000001" blue="0.19056189060000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="W4o-GX-yIY"/>
                     </view>
+                    <connections>
+                        <outlet property="navBar" destination="42V-wS-hDw" id="nD2-ae-QwI"/>
+                        <outlet property="navItem" destination="REU-Bs-p3C" id="9rQ-Wu-4Xx"/>
+                        <outlet property="textView" destination="Mee-fr-fuX" id="Ofa-ZF-djD"/>
+                        <outlet property="titleTextField" destination="1vb-Qo-b12" id="gUK-re-mcg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1W-Zy-FFQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3287.1999999999998" y="32.833583208395808"/>
+            <point key="canvasLocation" x="3286.875" y="32.74647887323944"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="EQy-wQ-Ner"/>
+    </inferredMetricsTieBreakers>
 </document>
