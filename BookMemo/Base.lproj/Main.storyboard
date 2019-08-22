@@ -61,6 +61,7 @@
                     <connections>
                         <outlet property="addCellButton" destination="j33-BW-PWp" id="RNp-xf-7yX"/>
                         <outlet property="label" destination="gih-Fm-lKJ" id="jeu-qy-Y0X"/>
+                        <outlet property="searchBar" destination="Csr-53-G9F" id="eQ5-br-tJe"/>
                         <outlet property="table" destination="NRl-rF-emN" id="4Ga-4U-4yd"/>
                         <segue destination="Rlk-4z-Kel" kind="show" identifier="toMemoList" id="WsR-au-Kzp"/>
                     </connections>
@@ -128,6 +129,7 @@
                         <outlet property="addMemoButton" destination="PhM-Uv-8aB" id="4Ai-f1-w1v"/>
                         <outlet property="navBar" destination="v27-ry-D02" id="CPF-LY-MRQ"/>
                         <outlet property="navItem" destination="vEb-aa-73A" id="gPL-x6-hMi"/>
+                        <outlet property="searchBar" destination="HuO-VZ-nhE" id="5Bz-XL-2Y3"/>
                         <outlet property="table" destination="oP2-ZS-r9V" id="nwr-h7-4w4"/>
                         <segue destination="KR3-rl-Iw3" kind="show" identifier="toMemoDetail" id="2kN-pl-mJn"/>
                     </connections>

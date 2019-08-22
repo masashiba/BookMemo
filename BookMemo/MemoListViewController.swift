@@ -9,13 +9,14 @@
 import UIKit
 import RealmSwift
 
-class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
+class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewDataSource,UISearchBarDelegate{
 
     //Outlet変数
     @IBOutlet var table : UITableView!
     @IBOutlet var navBar : UINavigationBar!
     @IBOutlet var navItem : UINavigationItem!
     @IBOutlet var addMemoButton : UIButton!
+    @IBOutlet var searchBar : UISearchBar!
     //navigationBarのtitle入れる変数
     var titleString = String()
     //新しいメモの情報を一時的に格納する変数
@@ -29,12 +30,15 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
     var bookNumber = Int()
     //MemoがあるかどうかのBool型変数
     var isNewMemoEmpty = Bool()
+    //検索した結果の配列
+    var searchData = [(String,Int)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //delegateとdataSource
         table.delegate = self
         table.dataSource = self
+        searchBar.delegate = self
         //UI設定
         table.tableFooterView = UIView()
         let backBarButton = UIBarButtonItem(title: "戻る", style: UIBarButtonItem.Style.plain, target: self, action:#selector(self.returnView))
@@ -49,7 +53,8 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
         addMemoButton.titleLabel?.font = UIFont(name: "03SmartFontUI", size: 40)
         //cell準備
         table.register(UINib(nibName: "BookListTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
-        // Do any additional setup after loading the view.
+        
+        reset()
     }
     
     @objc func returnView() {
@@ -57,32 +62,29 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let realm = try! Realm()
-        let book = realm.objects(Book.self)[bookNumber]
-        return book.memos.count
+        return searchData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let realm = try! Realm()
-        let memos = realm.objects(Book.self)[bookNumber].memos
         let customCell = table.dequeueReusableCell(withIdentifier: "CustomCell") as! BookListTableViewCell
-        customCell.bookNameLabel.text = memos[indexPath.row].title
+        customCell.bookNameLabel.text = searchData[indexPath.row].0
         return customCell
     }
     
     //cell削除
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        self.delete(index: indexPath.row)
+        self.delete(index: searchData[indexPath.row].1)
+        searchData.remove(at: indexPath.row)
         table.deleteRows(at: [indexPath], with: .fade)
     }
     
     //cellが押された時
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let realm = try! Realm()
-        let book = realm.objects(Book.self)[bookNumber]
-        memoTitle = book.memos[indexPath.row].title
-        memoContent = book.memos[indexPath.row].content
-        memoNumber = indexPath.row
+        let memo = realm.objects(Book.self)[bookNumber].memos[searchData[indexPath.row].1]
+        memoTitle = memo.title
+        memoContent = memo.content
+        memoNumber = searchData[indexPath.row].1
         performSegue(withIdentifier: "toMemoDetail", sender: nil)
         table.deselectRow(at: indexPath, animated: true)
     }
@@ -101,6 +103,7 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
             } catch {
                 
             }
+            reset()
             table.reloadData()
         }
     }
@@ -120,6 +123,8 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
             } catch {
                 
             }
+            reset()
+            table.reloadData()
         }
     }
 
@@ -145,6 +150,39 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
         } else {
             memoViewController.contentString = ""
             memoViewController.isNewMemo = true
+        }
+    }
+    
+    //searchBar以外を触ったら入力終了
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar.endEditing(true)
+        search(searchBar)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        search(searchBar)
+    }
+    
+    func search(_ searchBar: UISearchBar) {
+        reset()
+        if searchBar.text! != "" {
+            searchBar.endEditing(true)
+            let dataArray = searchData
+            searchData = dataArray.filter{
+                $0.0.contains(searchBar.text!)
+            }
+            table.reloadData()
+        } else {
+            table.reloadData()
+        }
+    }
+    
+    func reset() {
+        let realm = try! Realm()
+        let memos = realm.objects(Book.self)[bookNumber].memos
+        searchData = [(String,Int)]()
+        for i in 0..<memos.count {
+            searchData.append((memos[i].title,i))
         }
     }
     /*

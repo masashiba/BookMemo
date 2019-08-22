@@ -10,13 +10,13 @@ import UIKit
 import PopupDialog
 import RealmSwift
 
-class BookListViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
+class BookListViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
 
     //Outlet変数
     @IBOutlet var label : UILabel!
     @IBOutlet var table : UITableView!
     @IBOutlet var addCellButton : UIButton!
-    
+    @IBOutlet var searchBar : UISearchBar!
     //追加する本の名前を一時的に入れる変数
     var newBook = String()
     //受け渡すタイトルを入れる変数
@@ -25,12 +25,15 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     let modalView = ModalViewController(nibName: "ModalViewController", bundle: nil) as UIViewController
     //どの本かを示す変数
     var bookNumber = Int()
+    //検索した結果の配列
+    var searchData = [(String,Int)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //delegateとdataSource
         table.delegate = self
         table.dataSource = self
+        searchBar.delegate = self
         // Do any additional setup after loading the view.
         //UI設定
         label.font = UIFont(name: "03SmartFontUI", size: 45)
@@ -41,6 +44,8 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         table.register(UINib(nibName: "BookListTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         //ButtonのAction追加
         addCellButton.addTarget(self, action: #selector(presentModal), for: UIControl.Event.touchUpInside)
+        
+        reset()
     }
     
     //追加ボタンを押した時の挙動
@@ -65,32 +70,26 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     //bookNameArrayの中身を順番にcellに格納
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let realm = try! Realm()
-        let books = realm.objects(Book.self)
-        return books.count
+        return searchData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let realm = try! Realm()
-        let books = realm.objects(Book.self)
         let customCell = table.dequeueReusableCell(withIdentifier: "CustomCell") as! BookListTableViewCell
-        customCell.bookNameLabel.text = books[indexPath.row].bookName
+        customCell.bookNameLabel.text = searchData[indexPath.row].0
         return customCell
     }
     
     //cellが押されたら画面遷移
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let realm = try! Realm()
-        let books = realm.objects(Book.self)
-        titleText = books[indexPath.row].bookName
-        bookNumber = indexPath.row
+        titleText = searchData[indexPath.row].0
+        bookNumber = searchData[indexPath.row].1
         performSegue(withIdentifier: "toMemoList", sender: nil)
         table.deselectRow(at: indexPath, animated: true)
     }
     
     //cell削除
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        self.delete(index: indexPath.row)
+        self.delete(index: searchData[indexPath.row].1)
         table.deleteRows(at: [indexPath], with: .fade)
     }
     
@@ -125,6 +124,39 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
             }
         } catch {
             
+        }
+    }
+    
+    //searchBar以外を触ったら入力終了
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar.endEditing(true)
+        search(searchBar)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        search(searchBar)
+    }
+    
+    func search(_ searchBar: UISearchBar) {
+        reset()
+        if searchBar.text! != "" {
+            searchBar.endEditing(true)
+            let dataArray = searchData
+            searchData = dataArray.filter{
+                $0.0.contains(searchBar.text!)
+            }
+            table.reloadData()
+        } else {
+            table.reloadData()
+        }
+    }
+    
+    func reset() {
+        let realm = try! Realm()
+        let books = realm.objects(Book.self)
+        searchData = [(String,Int)]()
+        for i in 0..<books.count {
+            searchData.append((books[i].bookName,i))
         }
     }
     
