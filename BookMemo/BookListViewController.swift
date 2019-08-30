@@ -34,12 +34,22 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         table.delegate = self
         table.dataSource = self
         searchBar.delegate = self
-        // Do any additional setup after loading the view.
+        
         //UI設定
-        label.font = UIFont(name: "03SmartFontUI", size: 45)
         addCellButton.layer.cornerRadius = 30
         addCellButton.titleLabel?.font = UIFont(name: "03SmartFontUI", size: 40)
         table.tableFooterView = UIView()
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 40) as Any,
+             NSAttributedString.Key.foregroundColor: UIColor.white]
+
+                
+        searchBar.backgroundImage = UIImage()
+        navigationController?.navigationBar.shadowImage = UIImage()
+                
         //cell準備
         table.register(UINib(nibName: "BookListTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         //ButtonのAction追加
@@ -65,10 +75,7 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         })
     }
 
-    
-    
     //bookNameArrayの中身を順番にcellに格納
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchData.count
     }
@@ -96,7 +103,7 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toMemoList" {
             let memoListViewController = segue.destination as! MemoListViewController
-            memoListViewController.titleString = titleText
+            memoListViewController.navigationItem.title = titleText
             memoListViewController.bookNumber = self.bookNumber
         }
     }
@@ -112,7 +119,8 @@ class BookListViewController: UIViewController,UITableViewDelegate, UITableViewD
         } catch {
             
         }
-        table.reloadData()
+//        table.reloadData()
+        self.search(searchBar)
     }
     
     func delete(index: Int) {

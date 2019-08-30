@@ -30,6 +30,7 @@
                 <color key="backgroundColor" red="0.094117647058823528" green="0.37254901960784315" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="bookNameLabel" destination="NMg-g1-99O" id="INc-z4-3aQ"/>
             </connections>

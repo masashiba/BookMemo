@@ -13,10 +13,9 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
 
     //Outlet変数
     @IBOutlet var table : UITableView!
-    @IBOutlet var navBar : UINavigationBar!
-    @IBOutlet var navItem : UINavigationItem!
     @IBOutlet var addMemoButton : UIButton!
     @IBOutlet var searchBar : UISearchBar!
+    
     //navigationBarのtitle入れる変数
     var titleString = String()
     //新しいメモの情報を一時的に格納する変数
@@ -41,16 +40,15 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
         searchBar.delegate = self
         //UI設定
         table.tableFooterView = UIView()
-        let backBarButton = UIBarButtonItem(title: "戻る", style: UIBarButtonItem.Style.plain, target: self, action:#selector(self.returnView))
-        backBarButton.tintColor = UIColor.white
-        navItem.leftBarButtonItem = backBarButton
-        navItem.title = titleString
-        navBar.titleTextAttributes =
-            [NSAttributedString.Key.font: UIFont(name: "03SmartFontUI", size: 18) as Any,
-             NSAttributedString.Key.foregroundColor: UIColor.white]
-        navBar.pushItem(navItem, animated: true)
+        
+        navigationItem.largeTitleDisplayMode = .never
+        
         addMemoButton.layer.cornerRadius = 30
         addMemoButton.titleLabel?.font = UIFont(name: "03SmartFontUI", size: 40)
+        
+        searchBar.backgroundImage = UIImage()
+        navigationController?.navigationBar.shadowImage = UIImage()
+
         //cell準備
         table.register(UINib(nibName: "BookListTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
         
@@ -143,7 +141,7 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let memoViewController = segue.destination as! MemoViewController
         if segue.identifier == "toMemoDetail" {
-            memoViewController.titleString = self.memoTitle
+            memoViewController.navigationItem.title = self.memoTitle
             memoViewController.contentString = self.memoContent
             memoViewController.memoNumber = self.memoNumber
             memoViewController.isNewMemo = false

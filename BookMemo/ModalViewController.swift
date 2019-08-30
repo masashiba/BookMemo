@@ -46,7 +46,8 @@ class ModalViewController: UIViewController {
         //消える
         self.dismiss(animated: true, completion: nil)
         //親viewに値を受け渡し
-        let bookListViewController = self.presentingViewController as! BookListViewController
+        let navigationController = self.presentingViewController as! UINavigationController
+        let bookListViewController = navigationController.topViewController as! BookListViewController
         bookListViewController.newBook = self.textField.text!.trimmingCharacters(in: .whitespaces)
         //親viewにcell追加させる
         bookListViewController.addBook()
