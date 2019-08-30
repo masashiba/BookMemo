@@ -69,6 +69,11 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
         return customCell
     }
     
+    //cellの高さ設定
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60.0
+    }
+    
     //cell削除
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         self.delete(index: searchData[indexPath.row].1)
@@ -167,7 +172,7 @@ class MemoListViewController: UIViewController,UITableViewDelegate, UITableViewD
             searchBar.endEditing(true)
             let dataArray = searchData
             searchData = dataArray.filter{
-                $0.0.contains(searchBar.text!)
+                $0.0.lowercased().contains(searchBar.text!.lowercased())
             }
             table.reloadData()
         } else {
