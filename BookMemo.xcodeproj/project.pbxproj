@@ -57,7 +57,7 @@
 		BC4AECBB22E1A01C00C54504 /* ModalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalViewController.xib; sourceTree = "<group>"; };
 		BC89908422CF556E00B4B511 /* BookListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookListTableViewCell.swift; sourceTree = "<group>"; };
 		BC89908522CF556E00B4B511 /* BookListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookListTableViewCell.xib; sourceTree = "<group>"; };
-		BC89908822CF570100B4B511 /* 03SmartFontUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = 03SmartFontUI.ttf; path = ../../../../../Library/Fonts/03SmartFontUI.ttf; sourceTree = "<group>"; };
+		BC89908822CF570100B4B511 /* 03SmartFontUI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 03SmartFontUI.ttf; sourceTree = "<group>"; };
 		BCCAB43C22F0776200949BCF /* BookNameRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookNameRealm.swift; sourceTree = "<group>"; };
 		BCD3055C2313B818000BE3D1 /* CustomTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableView.swift; sourceTree = "<group>"; };
 		BCD3056023168E61000BE3D1 /* Font Awesome 5 Free-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Free-Solid-900.otf"; sourceTree = "<group>"; };
@@ -134,11 +134,10 @@
 		BCF913D422BCB4B2006723DF /* BookMemo */ = {
 			isa = PBXGroup;
 			children = (
-				BCF913D522BCB4B2006723DF /* AppDelegate.swift */,
-				BCF913D922BCB4B2006723DF /* Main.storyboard */,
 				BCF913DC22BCB4B4006723DF /* Assets.xcassets */,
 				BCF913DE22BCB4B4006723DF /* LaunchScreen.storyboard */,
-				BCF913E122BCB4B4006723DF /* Info.plist */,
+				BCF913D922BCB4B2006723DF /* Main.storyboard */,
+				BCF913D522BCB4B2006723DF /* AppDelegate.swift */,
 				BCF9140322BCB4D9006723DF /* BookListViewController.swift */,
 				BCF9140522BCB4E8006723DF /* MemoListViewController.swift */,
 				BCF9140722BCB4F2006723DF /* MemoViewController.swift */,
@@ -150,6 +149,7 @@
 				BC4AECBB22E1A01C00C54504 /* ModalViewController.xib */,
 				BCCAB43C22F0776200949BCF /* BookNameRealm.swift */,
 				BCD3055C2313B818000BE3D1 /* CustomTableView.swift */,
+				BCF913E122BCB4B4006723DF /* Info.plist */,
 			);
 			path = BookMemo;
 			sourceTree = "<group>";
@@ -615,7 +615,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z6SW4FCQ2J;
+				DEVELOPMENT_TEAM = 6JB2SDQGN3;
 				INFOPLIST_FILE = BookMemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -634,7 +634,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Z6SW4FCQ2J;
+				DEVELOPMENT_TEAM = 6JB2SDQGN3;
 				INFOPLIST_FILE = BookMemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
